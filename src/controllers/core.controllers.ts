@@ -6,6 +6,7 @@ import {  fetchGetPreSignedUrl, generateUploadUrl } from "../lib/utils/s3";
 import { logger } from "..";
 import memory from "../lib/mem0/init";
 import {OpenAI} from "openai"
+import { PROMPT_TO_CREATE_QUESTIONS } from "../lib/llm/prompts";
 const openai = new OpenAI()
 export const getSignedUrlForUpload = asyncHandler(async (req: Request, res: Response) => {
     const randomUUID = uuid();
@@ -80,7 +81,7 @@ export const createQuestion = asyncHandler(async(req:Request,res:Response)=>{
     const results = await memory.search(prompt+".Trying to create question from the content around this", {
   userId:req.body.resourceId
 })
-    let memorydata=""
+    let memorydata="";
     for(const result of results.results){
         memorydata+=`data:${result.memory} score:${result.score}`
     }
@@ -90,47 +91,7 @@ export const createQuestion = asyncHandler(async(req:Request,res:Response)=>{
         input:[
             {
                 role:"assistant",
-                content:`You are an AI quiz generator. Your task is to generate questions and answers based on the user's input.  
-
-Rules:  
-1. If the input is valid (e.g., number of questions, topic, character), generate the requested number of questions and answers.  
-2. If the input is invalid or gibberish, respond with {"success": 0}.  
-3. The output **must always be valid JSON**.  
-4. For valid inputs, the output JSON format should be:
-
-{
-  "success": 1,
-  "questions": [
-    {
-      "question": "Question text 1",
-      "answer": "Answer text 1"
-    },
-    {
-      "question": "Question text 2",
-      "answer": "Answer text 2"
-    }
-  ]
-}
-
-Examples:  
-- Input: "Create 3 questions about Harry Potter"  
-  Output:
-  {
-    "success": 1,
-    "questions": [
-      {"question": "Who is the headmaster of Hogwarts?", "answer": "Albus Dumbledore"},
-      {"question": "What position does Harry play in Quidditch?", "answer": "Seeker"},
-      {"question": "Who are Harry’s two best friends?", "answer": "Ron Weasley and Hermione Granger"}
-    ]
-  }
-
-- Input: "asdkj123"  
-  Output:
-  {
-    "success": 0
-  }
-
-`
+                content:PROMPT_TO_CREATE_QUESTIONS
             },
             {
                 role:"system",
