@@ -1,5 +1,6 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl, } from "@aws-sdk/s3-request-presigner";
+import { logger } from "../..";
 
 // Initialize S3 client
 const s3 = new S3Client({
@@ -19,10 +20,28 @@ async function generateUploadUrl( id:string,type:string= "application/pdf") {
   });
 
   const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-  return {success:1,url};
+  return {success:true,url};
+}
+ const fetchGetPreSignedUrl = async(id:string)=>{
+    
+try {
+        const command = new GetObjectCommand({ Bucket: bucketName, Key: "uploads/"+id });
+    const url =await getSignedUrl(s3,command,{expiresIn:3600})
+    return {success:true,url}
+} catch (error) {
+
+    logger.error(error)
+    if(error instanceof Error){
+        return {
+            success:false,
+            msg:error.message
+        }
+    }
+    return {success:false}
+}
 }
 
-
 export {
-    generateUploadUrl
+    generateUploadUrl,
+    fetchGetPreSignedUrl
 }

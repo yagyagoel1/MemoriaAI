@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getSignedUrlForUpload } from "../controllers/core.controllers";
+import { generateEmbeddings, getSignedUrlForUpload } from "../controllers/core.controllers";
 
 
 const app = Router()
@@ -7,7 +7,7 @@ const app = Router()
 
 
 
-app.get("/signed-url-for-upload",getSignedUrlForUpload)
-
+app.get("/signed-url-for-upload/:type",getSignedUrlForUpload)
+app.post("/generate-embeddings",generateEmbeddings)
 
 export default app
