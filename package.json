@@ -16,9 +16,13 @@
     "@aws-sdk/s3-request-presigner": "^3.888.0",
     "@langchain/community": "^0.3.55",
     "@langchain/core": "^0.3.75",
+    "@qdrant/js-client-rest": "^1.15.1",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "libxmljs": "^1.0.11",
     "mem0ai": "^2.1.38",
+    "node-gyp": "^11.4.2",
+    "openai": "^5.20.2",
     "pdf-parse": "^1.1.1",
     "pino": "^9.9.5",
     "uuid": "^13.0.0"

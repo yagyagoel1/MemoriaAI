@@ -10,7 +10,7 @@ const memConfig = {
       },
     },
     vectorStore: {
-      provider: 'qudrant',
+      provider: 'qdrant',
       config: {
         host:"localhost",
         port:6333
