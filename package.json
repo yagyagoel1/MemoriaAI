@@ -4,19 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"tsc -b && dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.888.0",
+    "@aws-sdk/s3-request-presigner": "^3.888.0",
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "mem0ai": "^2.1.38",
-    "pino": "^9.9.5"
+    "pino": "^9.9.5",
+    "uuid": "^13.0.0"
   },
+
   "devDependencies": {
     "@types/express": "^5.0.3",
-    "@types/node": "^24.4.0"
+    "@types/node": "^24.4.0",
+    "s3": "link:@types/aws-sdk/clients/s3"
   }
 }
