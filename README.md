@@ -39,7 +39,7 @@ To run MemoriaAI locally:
    ```bash
    git clone https://github.com/yagyagoel1/MemoriaAI.git
    cd MemoriaAI
-````
+
 
 2. **Install dependencies:**
 
@@ -85,7 +85,7 @@ MemoriaAI serves as a comprehensive portfolio piece demonstrating **technical ex
 
 ## 📞 Let's Connect
 
-I'm open to discussing new opportunities and collaborations. Reach out via [LinkedIn](https://www.linkedin.com/in/yagyagoel1) or [Email](mailto:yagyagoel1@example.com).
+I'm open to discussing new opportunities and collaborations. Reach out via [LinkedIn](https://www.linkedin.com/in/yagyagoel) or [Email](mailto:yagyagoel87@gmail.com).
 
 ---
 
